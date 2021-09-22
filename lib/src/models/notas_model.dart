@@ -9,9 +9,9 @@ class NotasModel {
   //Map-> objetc
   factory NotasModel.fromMap(Map<String,dynamic> map){
     return NotasModel(
-      id: ['id'],
-      titulo: ['titulo'],
-      detalle: ['detalle']
+      id: map['id'],
+      titulo: map['titulo'],
+      detalle: map['detalle']
       
     );
   }
