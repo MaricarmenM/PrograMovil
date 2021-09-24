@@ -25,7 +25,7 @@ class _NotasScreenState extends State<NotasScreen> {
     return Scaffold(
       appBar: AppBar(
          backgroundColor: ColorSettings.colorPrimary,
-         title: Text('GEstion de Notas'),
+         title: Text('Gestion de Notas'),
          actions: [
            IconButton(
              onPressed: (){
@@ -59,7 +59,7 @@ class _NotasScreenState extends State<NotasScreen> {
           child: Column(
             children: [
               Text(nota.titulo!, style: TextStyle(fontWeight: FontWeight.bold),),
-              Text(nota.detalle)
+              Text(nota.detalle!)
             ],
           ),
         );

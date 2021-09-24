@@ -18,9 +18,10 @@ class DashBoardScreen extends StatelessWidget {
               UserAccountsDrawerHeader(
                 accountName: Text('Maricarmen Mendoza Herrera'), 
                 accountEmail: Text('17030815@itcelaya.edu.mx'),
-                currentAccountPicture: CircleAvatar(
-                  child: Image.network('https://www.brang.mx/admin/img/user.png'),
-                ),
+               // currentAccountPicture: CircleAvatar(
+                 // child: Image.asset('assets/fondo.jpeg')
+                  //child: Image.network('https://www.brang.mx/admin/img/user.png'),
+                //),
                 decoration: BoxDecoration(
                   color: ColorSettings.colorPrimary
                 ),

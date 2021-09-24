@@ -1,8 +1,8 @@
 
 class NotasModel {
-  dynamic id;
-  dynamic titulo;
-  dynamic detalle;
+  int? id;
+  String? titulo;
+  String? detalle;
 
   NotasModel({this.id,this.titulo,this.detalle});
 

@@ -19,6 +19,7 @@ class _AgregarNotaScreenState extends State<AgregarNotaScreen> {
 
 
   @override
+  // ignore: must_call_super
   void initState(){
     _databaseHelper = DatabaseHelper();
   }
@@ -38,7 +39,7 @@ class _AgregarNotaScreenState extends State<AgregarNotaScreen> {
             onPressed: (){
               NotasModel nota = NotasModel(
                 titulo: _controllerTitulo.text,
-                detalle: _controllerTitulo
+                detalle: _controllerDetalle.text
               );
               _databaseHelper.insert(nota.toMap()).then(
                 (value){
