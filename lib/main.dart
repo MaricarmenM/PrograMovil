@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/src/screens/AgregarNotaScreen.dart';
 import 'package:practica2/src/screens/intensiones_screen.dart';
 import 'package:practica2/src/screens/login_screen/opcion1_screen.dart';
 import 'package:practica2/src/screens/notas_screen.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/opc1' :(BuildContext context)=> Opcion1Screen(),
         '/intensiones':(BuildContext context) => IntensionesScreen(),
-        '/notas':(BuildContext context)=> NotasScreen()
+        '/notas':(BuildContext context)=> NotasScreen(),
+        '/agregar' :(BuildContext cotext)=> AgregarNotaScreen()
       },
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
