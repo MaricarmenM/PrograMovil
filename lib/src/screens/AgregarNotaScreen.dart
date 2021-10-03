@@ -3,6 +3,7 @@ import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/notas_model.dart';
 import 'package:practica2/src/utils/color_settings.dart';
 
+// ignore: must_be_immutable
 class AgregarNotaScreen extends StatefulWidget {
   NotasModel? nota;
   AgregarNotaScreen({ Key? key ,this.nota }) : super(key: key);
@@ -89,10 +90,10 @@ class _AgregarNotaScreenState extends State<AgregarNotaScreen> {
       controller: _controllerTitulo,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
+           border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10)
         ),
-        labelText: "Titulo d ela nota",
+        labelText: "Titulo de la nota",
         errorText: "Campo obligatorio"
       ),
       onChanged: (value){

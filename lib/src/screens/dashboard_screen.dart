@@ -7,6 +7,13 @@ class DashBoardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      GestureDetector iconoPerfil = GestureDetector(
+        child: Image(image:  AssetImage('assets/user.jpg')),
+        onTap: (){
+          Navigator.pop(context);
+          Navigator.pushNamed(context,'/perfil');
+        },
+      );
     return Container(
       child: Scaffold(
         appBar: AppBar(title: Text('DASHBOARD'),
@@ -18,14 +25,15 @@ class DashBoardScreen extends StatelessWidget {
               UserAccountsDrawerHeader(
                 accountName: Text('Maricarmen Mendoza Herrera'), 
                 accountEmail: Text('17030815@itcelaya.edu.mx'),
-               // currentAccountPicture: CircleAvatar(
-                 // child: Image.asset('assets/fondo.jpeg')
-                  //child: Image.network('https://www.brang.mx/admin/img/user.png'),
-                //),
+                currentAccountPicture: CircleAvatar(
+                  child: iconoPerfil,
+                  backgroundColor: Colors.white,  
+                ),
                 decoration: BoxDecoration(
                   color: ColorSettings.colorPrimary
                 ),
-                ),
+              ),
+               
                 ListTile(
                   title: Text('Propinas'),
                   subtitle: Text('calculadora de propina'),
@@ -44,7 +52,6 @@ class DashBoardScreen extends StatelessWidget {
                   onTap: (){
                     Navigator.pop(context);
                     Navigator.pushNamed(context,'/intensiones');
-
                   },
                 ),
                  ListTile(
@@ -55,7 +62,6 @@ class DashBoardScreen extends StatelessWidget {
                   onTap: (){
                     Navigator.pop(context);
                     Navigator.pushNamed(context,'/notas');
-
                   },
                 )
             ],

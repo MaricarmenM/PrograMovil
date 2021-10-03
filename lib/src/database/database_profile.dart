@@ -1,15 +1,14 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:practica2/src/models/notas_model.dart';
+import 'package:practica2/src/models/perfil_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class DatabaseHelper {
-  static final _nombreBD = "NOTASBD";
+class DatabasePerfil {
+  static final _nombreBD = "PERFILDB";
   static final _versionBD = 2;
-  static final _nombreTBL = "tblNotas";
-
+  static final _nombreTBL= "tblUser";
 
   static Database? _database;
   Future<Database?> get database async{
@@ -24,13 +23,12 @@ class DatabaseHelper {
     return openDatabase(
       rutaBD,
       version: _versionBD,
-      onCreate: _crearTabla,
-
+      onCreate:_crearTabla,
     );
   }
-    
-   Future<void>  _crearTabla(Database db, int version) async{
-      await db.execute("CREATE TABLE $_nombreTBL(id INTEGER PRIMARY KEY, titulo VARCHAR(50), detalle VARCHAR(100))");
+    //NUEVA TABLA
+    Future<void> _crearTabla(Database db, int version) async{
+     await db.execute("CREATE TABLE $_nombreTBL(id INTEGER PRIMARY KEY,foto VARCHAR(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
     }
   
   Future<int>insert(Map<String,dynamic> row ) async {
@@ -48,16 +46,16 @@ class DatabaseHelper {
     return await conexion!.delete(_nombreTBL,where: 'id= ?',whereArgs:[id]);
   } 
 
-  Future<List<NotasModel>> getAllNotes()async{
+  Future<List<PerfilModel>> getAllUsers()async{
     var conexion = await database;
     var result= await conexion!.query(_nombreTBL);
-    return result.map((notaMap) => NotasModel.fromMap(notaMap)).toList();
+    return result.map((notaMap) => PerfilModel.fromMap(notaMap)).toList();
   }
 
-  Future<NotasModel> getNote(int id) async{
+  Future<PerfilModel> getUser(int id) async{
     var conexion = await database;
     var result = await conexion!.query(_nombreTBL,where:'id=?',whereArgs:[id]);
-    return result.map((notaMap) => NotasModel.fromMap(notaMap)).first;
+    return result.map((notaMap) => PerfilModel.fromMap(notaMap)).first;
   }
 
 }

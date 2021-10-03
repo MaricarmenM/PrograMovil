@@ -3,6 +3,8 @@ import 'package:practica2/src/screens/AgregarNotaScreen.dart';
 import 'package:practica2/src/screens/intensiones_screen.dart';
 import 'package:practica2/src/screens/login_screen/opcion1_screen.dart';
 import 'package:practica2/src/screens/notas_screen.dart';
+import 'package:practica2/src/screens/perfilEdit_screen.dart';
+import 'package:practica2/src/screens/profile_screen.dart';
 import 'package:practica2/src/screens/splash_screen.dart';
 
 void main() {
@@ -16,10 +18,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/opc1' :(BuildContext context)=> Opcion1Screen(),
-        '/intensiones':(BuildContext context) => IntensionesScreen(),
-        '/notas':(BuildContext context)=> NotasScreen(),
-        '/agregar' :(BuildContext cotext)=> AgregarNotaScreen()
+        '/opc1'         :(BuildContext context) => Opcion1Screen(),
+        '/intensiones'  :(BuildContext context) => IntensionesScreen(),
+        '/notas'        :(BuildContext context) => NotasScreen(),
+        '/agregar'      :(BuildContext cotext)  => AgregarNotaScreen(),
+        '/perfil'       :(BuildContext context) => UserProfileScreen(),
+        '/perfilEdit'   :(BuildContext context) => EditProfileScreen(),
       },
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
