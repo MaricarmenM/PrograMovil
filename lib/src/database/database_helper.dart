@@ -10,7 +10,6 @@ class DatabaseHelper {
   static final _versionBD = 2;
   static final _nombreTBL = "tblNotas";
 
-
   static Database? _database;
   Future<Database?> get database async{
     if (_database != null)return _database; {
@@ -25,6 +24,7 @@ class DatabaseHelper {
       rutaBD,
       version: _versionBD,
       onCreate: _crearTabla,
+      
 
     );
   }

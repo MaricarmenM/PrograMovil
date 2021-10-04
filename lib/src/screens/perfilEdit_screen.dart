@@ -122,10 +122,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
    Widget _crearTextFieldFoto(){
-    return CircleAvatar(
-      child: Image(image: AssetImage('assets/user.jpg'),),
-      backgroundColor: Colors.white,
-     );
+    return IconButton(
+      onPressed: (){
+         Navigator.pushNamed(context,'/agregarFoto');
+      }, 
+      icon: Icon(Icons.camera_alt_outlined));
   }
 
   Widget _crearTextFieldNombre(){
@@ -152,7 +153,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       decoration: const InputDecoration(
         border: UnderlineInputBorder(),
         filled: true,
-      //  icon: Icon(Icons.person),
         hintText: 'Ingres tu apellido paterno',
         labelText: 'Apellido Paterno *',
       ),
