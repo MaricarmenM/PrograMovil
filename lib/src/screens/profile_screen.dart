@@ -28,7 +28,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       appBar: AppBar(
          backgroundColor: ColorSettings.colorPrimary,
          title: Text('Perfil'),
-         /*actions: [
+         actions: [
            IconButton(
              onPressed: (){
                Navigator.pushNamed(context,'/perfilEdit').whenComplete((){
@@ -37,7 +37,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
              }, 
              icon: Icon(Icons.supervised_user_circle_outlined)
              )
-         ],*/
+         ],
       ),
       body: FutureBuilder(
         future: _databaseHelper.getAllUsers(),

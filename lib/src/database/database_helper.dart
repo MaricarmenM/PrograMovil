@@ -51,11 +51,6 @@ class DatabaseHelper {
     return conexion!.update(_nombreTBL2,row, where: 'id = ?',whereArgs: [row['id']]);
   }
 
-  Future<int> deleteUser(int id )async{
-    var conexion = await database;
-    return await conexion!.delete(_nombreTBL2,where: 'id= ?',whereArgs:[id]);
-  } 
-
   Future<List<PerfilModel>> getAllUsers()async{
     var conexion = await database;
     var result= await conexion!.query(_nombreTBL2);

@@ -24,6 +24,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   // ignore: non_constant_identifier_names
   late DatabaseHelper _databaseHelper;
+
   TextEditingController _controllerNombre = TextEditingController();
   TextEditingController _controllerApellido1 = TextEditingController();
   TextEditingController _controllerApellido2 = TextEditingController();
@@ -157,6 +158,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
    Widget _crearTextFieldFoto(){
     return 
       ElevatedButton(
+    style: ElevatedButton.styleFrom(primary: ColorSettings.colorPrimary),
     onPressed:(){
       showDialog(
         context: context, 
@@ -191,7 +193,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Container(
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(width: 1,color: Colors.grey))
+                        border: Border(bottom: BorderSide(width: 1,color: Colors.grey)),
                       ),
                       child: Row(
                         children: [
@@ -264,6 +266,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget _crearTextFieldTelefono(){
     return TextField(
       controller: _controllerTelefono,
+      maxLength: 10,
       decoration: const InputDecoration(
         border: UnderlineInputBorder(),
         filled: true,
