@@ -2,13 +2,15 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:practica2/src/models/notas_model.dart';
+import 'package:practica2/src/models/perfil_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
   static final _nombreBD = "NOTASBD";
-  static final _versionBD = 2;
+  static final _versionBD = 4;
   static final _nombreTBL = "tblNotas";
+  static final _nombreTBL2="tblUser";
 
   static Database? _database;
   Future<Database?> get database async{
@@ -24,15 +26,42 @@ class DatabaseHelper {
       rutaBD,
       version: _versionBD,
       onCreate: _crearTabla,
+      onUpgrade: _onUpGadre,
       
 
     );
   }
-    
+    Future <void> _onUpGadre(Database db,int oldVersion,int newVersion) async{
+      db.execute("DROP TABLE $_nombreTBL2");
+      db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
+    }
+
    Future<void>  _crearTabla(Database db, int version) async{
       await db.execute("CREATE TABLE $_nombreTBL(id INTEGER PRIMARY KEY, titulo VARCHAR(50), detalle VARCHAR(100))");
+      await db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
     }
-  
+
+  Future<int>insertUser(Map<String,dynamic> row ) async {
+    var conexion = await database;
+   return conexion!.insert(_nombreTBL2, row); 
+  }
+
+  Future<int> updateUser(Map<String,dynamic> row) async{
+    var conexion = await database;
+    return conexion!.update(_nombreTBL2,row, where: 'id = ?',whereArgs: [row['id']]);
+  }
+
+  Future<int> deleteUser(int id )async{
+    var conexion = await database;
+    return await conexion!.delete(_nombreTBL2,where: 'id= ?',whereArgs:[id]);
+  } 
+
+  Future<List<PerfilModel>> getAllUsers()async{
+    var conexion = await database;
+    var result= await conexion!.query(_nombreTBL2);
+    return result.map((notaMap) => PerfilModel.fromMap(notaMap)).toList();
+  }
+
   Future<int>insert(Map<String,dynamic> row ) async {
     var conexion = await database;
    return conexion!.insert(_nombreTBL, row); 

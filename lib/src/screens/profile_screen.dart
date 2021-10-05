@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/database/database_profile.dart';
+import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/perfil_model.dart';
 import 'package:practica2/src/screens/perfilEdit_screen.dart';
 import 'package:practica2/src/utils/color_settings.dart';
@@ -13,12 +13,13 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
 
-  late DatabasePerfil _DatabasePerfil;
+  // ignore: non_constant_identifier_names
+  late DatabaseHelper _databaseHelper;
 
   @override
   void initState(){
     super.initState();
-    _DatabasePerfil = DatabasePerfil();
+    _databaseHelper = DatabaseHelper();
   }
   
   @override
@@ -27,17 +28,19 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       appBar: AppBar(
          backgroundColor: ColorSettings.colorPrimary,
          title: Text('Perfil'),
-         actions: [
+         /*actions: [
            IconButton(
              onPressed: (){
-               Navigator.pushNamed(context,'/perfilEdit');
+               Navigator.pushNamed(context,'/perfilEdit').whenComplete((){
+                 setState(() {});
+               });
              }, 
-             icon: Icon(Icons.note_add)
+             icon: Icon(Icons.supervised_user_circle_outlined)
              )
-         ],
+         ],*/
       ),
       body: FutureBuilder(
-        future: _DatabasePerfil.getAllUsers(),
+        future: _databaseHelper.getAllUsers(),
         builder: (BuildContext context, AsyncSnapshot<List<PerfilModel>>snapshot){
           if (snapshot.hasError) {
             return Center(child: Text('Ocurrio un error en la peticion'),);
@@ -79,7 +82,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder:(context)=> EditProfileScreen(dato: dato,)
+                           builder:(context)=> EditProfileScreen(dato: dato,)
                           )
                         );
                       },
