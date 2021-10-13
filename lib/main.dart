@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practica2/src/screens/AgregarNotaScreen.dart';
 import 'package:practica2/src/screens/intensiones_screen.dart';
 import 'package:practica2/src/screens/login_screen/opcion1_screen.dart';
+import 'package:practica2/src/screens/movies_screens/popular_screen.dart';
 import 'package:practica2/src/screens/notas_screen.dart';
 import 'package:practica2/src/screens/perfilEdit_screen.dart';
 import 'package:practica2/src/screens/profile_screen.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         '/agregar'      :(BuildContext cotext)  => AgregarNotaScreen(),
         '/perfil'       :(BuildContext context) => UserProfileScreen(),
         '/perfilEdit'   :(BuildContext context) => EditProfileScreen(),
-    //    '/movie'        :(BuildContext context) => PopularScreen(),
+        '/movie'        :(BuildContext context) => PopularScreen(),
       },
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),

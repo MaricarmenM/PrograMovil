@@ -1,13 +1,14 @@
-/*import 'dart:ffi';
+// ignore: unused_import
+import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:practica2/src/models/popular_movies_model.dart';
 import 'package:practica2/src/network/api_popular.dart';
+import 'package:practica2/src/views/card_popular.dart';
 
 class PopularScreen extends StatefulWidget {
-  const PopularScreen({ Key? key }) : super(key: key);
+  const PopularScreen({ Key? key}) : super(key: key);
 
   @override
   _PopularScreenState createState() => _PopularScreenState();
@@ -24,21 +25,23 @@ class _PopularScreenState extends State<PopularScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: apiPopular!.getAllPopular(),
-      builder: (BuildContext context,AsyncSnapshot<List<
-        PopularMoviesModel>?> snapshot){
-          if (snapshot.hasError) {
-            return Center(
-              child: Text('Hay error en la paticion') ,);
-          }else{
-            if (snapshot.connectionState == ConnectionState.done) {
-              return _listPopularMovies(snapshot.data);
+    return Scaffold(
+      body: FutureBuilder(
+        future: apiPopular!.getAllPopular(),
+        builder: (BuildContext context,AsyncSnapshot<List<
+          PopularMoviesModel>?> snapshot){
+            if (snapshot.hasError) {
+              return Center(
+                child: Text('Hay error en la paticion') ,);
             }else{
-              return CircularProgressIndicator();
+              if (snapshot.connectionState == ConnectionState.done) {
+                return _listPopularMovies(snapshot.data);
+              }else{
+                return CircularProgressIndicator();
+              }
             }
-          }
-      }
+        }
+      ),
     );
   }
   
@@ -46,10 +49,10 @@ class _PopularScreenState extends State<PopularScreen> {
     return ListView.separated(
       itemBuilder: (context,index){
         PopularMoviesModel popular = movies![index]; 
-        return CardPopularView(popular);
+        return CardPopularView(popular: popular);
       },
       separatorBuilder: (_, __) => Divider(height: 10,),
       itemCount: movies!.length,
     );
   }
-}*/
+}
