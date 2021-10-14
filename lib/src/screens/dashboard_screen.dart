@@ -73,6 +73,16 @@ class DashBoardScreen extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.pushNamed(context,'/movie');
                   },
+                ),
+                 ListTile(
+                  title: Text('Tareas'),
+                  subtitle: Text('Administrador de Tareas Escolares'),
+                  leading: Icon(Icons.book_sharp),
+                  trailing: Icon(Icons.chevron_right),
+                  onTap: (){
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context,'/tareas');
+                  },
                 )
             ],
           ),

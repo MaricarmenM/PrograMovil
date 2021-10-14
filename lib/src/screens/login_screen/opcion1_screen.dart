@@ -38,8 +38,8 @@ class _Opcion1ScreenState extends State<Opcion1Screen> {
     ElevatedButton cuadroDialogo = ElevatedButton(
          style: ElevatedButton.styleFrom(primary: ColorSettings.colorPrimary),
           onPressed: () {
-            if (myController.text!="") {
-
+            if (myController.text!=" ") {
+            if (myController.text!=','){
             showDialog<String>(
               context: context,
               builder: (BuildContext context) {
@@ -78,6 +78,7 @@ class _Opcion1ScreenState extends State<Opcion1Screen> {
               },
             );
             }
+           }
           },
           child: const Text('CALCULAR'),
       );

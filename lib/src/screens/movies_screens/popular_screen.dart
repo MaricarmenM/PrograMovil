@@ -32,7 +32,7 @@ class _PopularScreenState extends State<PopularScreen> {
           PopularMoviesModel>?> snapshot){
             if (snapshot.hasError) {
               return Center(
-                child: Text('Hay error en la paticion') ,);
+                child: Text('Hay error en la peticion') ,);
             }else{
               if (snapshot.connectionState == ConnectionState.done) {
                 return _listPopularMovies(snapshot.data);
