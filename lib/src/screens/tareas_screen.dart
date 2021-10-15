@@ -40,7 +40,7 @@ class _TareasScreenState extends State<TareasScreen> {
          ],
       ),
       body: FutureBuilder(
-        future: _databaseHelper.getAllHW(),
+        future: _databaseHelper.getAllHWSinEntregar(),
         builder: (BuildContext context, AsyncSnapshot<List<TareasModel>>snapshot){
           if (snapshot.hasError) {
             return Center(child: Text('Ocurrio un error en la peticion'),);
@@ -81,11 +81,53 @@ class _TareasScreenState extends State<TareasScreen> {
                 Text(tarea.nomTarea!,),
                 Text(tarea.descTarea!),
                 Text(tarea.fechaEntrega!),
-                Text(tarea.entregada!),
+               // Text(tarea.entregada!),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                   ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: ColorSettings.colorPrimary),
+                        onPressed: (){
+                          tarea.entregada = 1;
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('Confirmación'),
+                                content: Text(
+                                    'La tarea se marcara como entregada?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                        Navigator.pop(context);
+                                        _databaseHelper
+                                            .updateHW(tarea.toMap())
+                                            .then((noRows) {
+                                          if (noRows > 0) {
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                    content: Text('Tarea entregada con exito!!'))
+                                              );
+                                            setState(() {});
+                                          }
+                                        });
+                                      },
+                                      child: Text('OK')),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('Cancelar')),
+                                ],
+                              );
+                            }).then((value) {
+                          setState(() {});
+                        });
+                      },
+                      child: Text('Entregar')
+                    ),
                     IconButton(
+                    alignment: Alignment.topRight,
                     icon: Icon(Icons.more_vert),
                     onPressed: () {
                       showDialog(
@@ -170,59 +212,6 @@ class _TareasScreenState extends State<TareasScreen> {
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: (){
-                                        tarea.entregada = 'SI';
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text('Confirmación'),
-                                              content: Text(
-                                                  'La tarea se marcara como entregada?'),
-                                              actions: [
-                                                TextButton(
-                                                 onPressed: () {
-                                                      Navigator.pop(context);
-                                                      _databaseHelper
-                                                          .updateHW(tarea.toMap())
-                                                          .then((noRows) {
-                                                        if (noRows > 0) {
-                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                            SnackBar(
-                                                                  content: Text('Tarea entregada con exito!!'))
-                                                            );
-                                                          setState(() {});
-                                                        }
-                                                      });
-                                                    },
-                                                    child: Text('OK')),
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Text('Cancelar')),
-                                              ],
-                                            );
-                                          }).then((value) {
-                                        setState(() {});
-                                      });
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.all(20),
-                                      decoration: BoxDecoration(
-                                        border: Border(bottom: BorderSide(width: 1,color: Colors.grey)),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text('Entregar Tarea'),
-                                            ),
-                                          Icon(Icons.check_circle_sharp),
-                                        ],
-                                      ),
-                                    ),
-                                  )
                                 ],
                               ) ,
                             ),

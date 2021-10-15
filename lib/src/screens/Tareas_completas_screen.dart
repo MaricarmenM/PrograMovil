@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/tareas_model.dart';
-import 'package:practica2/src/screens/agregar_tareas_screen.dart';
 import 'package:practica2/src/utils/color_settings.dart';
 
 class TareasEntregadasScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class _TareasEntregadasScreenState extends State<TareasEntregadasScreen> {
          title: Text('Tareas Entregadas'),
       ),
       body: FutureBuilder(
-        future: _databaseHelper.getAllHW(),
+        future: _databaseHelper.getAllHWEntregadas(),
         builder: (BuildContext context, AsyncSnapshot<List<TareasModel>>snapshot){
           if (snapshot.hasError) {
             return Center(child: Text('Ocurrio un error en la peticion'),);
@@ -62,49 +61,51 @@ class _TareasEntregadasScreenState extends State<TareasEntregadasScreen> {
                 Text(tarea.nomTarea!,),
                 Text(tarea.descTarea!),
                 Text(tarea.fechaEntrega!),
-                Text(tarea.entregada!),
+               // Text(tarea.entregada!),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    IconButton(
-                    icon: Icon(Icons.check_circle_outline),
-                    onPressed: (){
-                        tarea.entregada = 'NO';
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text('Confirmación'),
-                              content: Text(
-                                  'Marcar la tarea como NO entregada?'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                      Navigator.pop(context);
-                                      _databaseHelper
-                                          .updateHW(tarea.toMap())
-                                          .then((noRows) {
-                                        if (noRows > 0) {
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(
-                                                  content: Text('Tarea sin entregar!!'))
-                                            );
-                                          setState(() {});
-                                        }
-                                      });
-                                    },
-                                    child: Text('OK')),
-                                TextButton(
+                   ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: ColorSettings.colorSec),
+                        onPressed: (){
+                          tarea.entregada = 0;
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('Confirmación'),
+                                content: Text(
+                                    'Desea anular la entrega?'),
+                                actions: [
+                                  TextButton(
                                     onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Cancelar')),
-                              ],
-                            );
-                          }).then((value) {
-                        setState(() {});
-                      });
-                    },
+                                        Navigator.pop(context);
+                                        _databaseHelper
+                                            .updateHW(tarea.toMap())
+                                            .then((noRows) {
+                                          if (noRows > 0) {
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                    content: Text('Tarea anulada!!'))
+                                              );
+                                            setState(() {});
+                                          }
+                                        });
+                                      },
+                                      child: Text('OK')),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: 
+                                      Text('Cancelar')),
+                                ],
+                              );
+                            }).then((value) {
+                          setState(() {});
+                        });
+                      },
+                      child:  Text('Anular Entrega'),
                     ),
                   ],
                 )

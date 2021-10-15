@@ -4,13 +4,13 @@ import 'package:practica2/src/screens/Tareas_completas_screen.dart';
 import 'package:practica2/src/screens/agregar_tareas_screen.dart';
 import 'package:practica2/src/screens/intensiones_screen.dart';
 import 'package:practica2/src/screens/login_screen/opcion1_screen.dart';
+import 'package:practica2/src/screens/movies_screens/detail_screen.dart';
 import 'package:practica2/src/screens/movies_screens/popular_screen.dart';
 import 'package:practica2/src/screens/notas_screen.dart';
 import 'package:practica2/src/screens/perfilEdit_screen.dart';
 import 'package:practica2/src/screens/profile_screen.dart';
 import 'package:practica2/src/screens/splash_screen.dart';
 import 'package:practica2/src/screens/tareas_screen.dart';
-import 'package:practica2/src/screens/try.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/tareas'       :(BuildContext context)=> TareasScreen(),
        '/crudTareas'    :(BuildContext context)=> AgregarTareaScreen(),
        '/tareasCompletas'   :(BuildContext context)=> TareasEntregadasScreen(),
+       '/detail' :(BuildContext context)=> DetailScreen(),
       // '/crudTareas'   :(BuildContext context)=> BottomTabbarExample(),
       },
       debugShowCheckedModeBanner: false,

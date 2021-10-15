@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/tareas_model.dart';
-import 'package:practica2/src/screens/tareas_screen.dart';
 import 'package:practica2/src/utils/color_settings.dart';
 
 // ignore: must_be_immutable
@@ -20,7 +19,6 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
   TextEditingController _controllerNombre = TextEditingController();
   TextEditingController _controllerDescripcion = TextEditingController();
   TextEditingController _controllerFechaEntrega = TextEditingController();
-  TextEditingController _controllerEntregada = TextEditingController();
 
   @override
   // ignore: must_call_super
@@ -29,7 +27,7 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
       _controllerNombre.text = widget.tarea!.nomTarea!;
       _controllerDescripcion.text = widget.tarea!.descTarea!;
       _controllerFechaEntrega.text= widget.tarea!.fechaEntrega!;
-      _controllerEntregada.text=widget.tarea!.entregada!;
+     // _controllerEntregada.text=widget.tarea!.entregada!;
     }
     _databaseHelper = DatabaseHelper();
   }
@@ -47,7 +45,7 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
                   nomTarea: _controllerNombre.text,
                   descTarea: _controllerDescripcion.text,
                   fechaEntrega: _controllerFechaEntrega.text,
-                  entregada: _controllerEntregada.text,
+                 // entregada: _controllerEntregada.text,
                 );
                 _databaseHelper.insertHW(tarea.toMap()).then(
                   (value){
@@ -65,7 +63,7 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
                       nomTarea: _controllerNombre.text,
                       descTarea: _controllerDescripcion.text,
                       fechaEntrega: _controllerFechaEntrega.text,
-                      entregada: _controllerEntregada.text,
+                      entregada: 0,
                   );
                   _databaseHelper.updateHW(tarea.toMap()).then(
                     (value) {
@@ -94,8 +92,6 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
             _crearTextFieldDescripcion(),
             SizedBox(height: 10,),
             _crearTextFieldFechaEntrega(),
-            SizedBox(height: 10,),
-            _crearTextFieldEntregada(),
           ],
         ),
       ),
@@ -144,23 +140,5 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
       },
     );
   }
-
-     Widget _crearTextFieldEntregada(){
-    return TextFormField(
-      controller: _controllerEntregada,
-      textCapitalization: TextCapitalization.words,
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: 'Ingresa el estatus de entrega',
-        labelText: 'Estatus de Entrega *',
-      ),
-      onChanged: (value){
-      },
-    );
-  }
-
-
-
-  
 
 }
