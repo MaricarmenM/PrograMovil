@@ -52,8 +52,6 @@ class _AgregarNotaScreenState extends State<AgregarNotaScreen> {
                   (value){
                     if (value>0) {
                      Navigator.pop(context);
-                    //  ScaffoldMessenger.of(context).showSnackBar(
-                      //  SnackBar(content: Text('Registro insertado correctamente')));
                     }else{
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('La solicitud no se completo')));

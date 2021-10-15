@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/screens/AgregarNotaScreen.dart';
+import 'package:practica2/src/screens/Tareas_completas_screen.dart';
 import 'package:practica2/src/screens/agregar_tareas_screen.dart';
 import 'package:practica2/src/screens/intensiones_screen.dart';
 import 'package:practica2/src/screens/login_screen/opcion1_screen.dart';
@@ -9,6 +10,7 @@ import 'package:practica2/src/screens/perfilEdit_screen.dart';
 import 'package:practica2/src/screens/profile_screen.dart';
 import 'package:practica2/src/screens/splash_screen.dart';
 import 'package:practica2/src/screens/tareas_screen.dart';
+import 'package:practica2/src/screens/try.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +31,9 @@ class MyApp extends StatelessWidget {
         '/perfilEdit'   :(BuildContext context) => EditProfileScreen(),
         '/movie'        :(BuildContext context) => PopularScreen(),
         '/tareas'       :(BuildContext context)=> TareasScreen(),
-        '/crudTareas'   :(BuildContext context)=> AgregarTareaScreen(),
+       '/crudTareas'    :(BuildContext context)=> AgregarTareaScreen(),
+       '/tareasCompletas'   :(BuildContext context)=> TareasEntregadasScreen(),
+      // '/crudTareas'   :(BuildContext context)=> BottomTabbarExample(),
       },
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/tareas_model.dart';
+import 'package:practica2/src/screens/tareas_screen.dart';
 import 'package:practica2/src/utils/color_settings.dart';
 
 // ignore: must_be_immutable
@@ -41,9 +42,47 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
         actions: [
           IconButton(
              onPressed: (){
-
+                if(widget.tarea==null){
+                TareasModel tarea = TareasModel(
+                  nomTarea: _controllerNombre.text,
+                  descTarea: _controllerDescripcion.text,
+                  fechaEntrega: _controllerFechaEntrega.text,
+                  entregada: _controllerEntregada.text,
+                );
+                _databaseHelper.insertHW(tarea.toMap()).then(
+                  (value){
+                    if (value>0) {
+                      Navigator.pop(context);
+                    }else{
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('La solicitud no se completo')));
+                    }
+                  }
+                  );
+                }else{
+                  TareasModel tarea = TareasModel(
+                      id: widget.tarea!.id,
+                      nomTarea: _controllerNombre.text,
+                      descTarea: _controllerDescripcion.text,
+                      fechaEntrega: _controllerFechaEntrega.text,
+                      entregada: _controllerEntregada.text,
+                  );
+                  _databaseHelper.updateHW(tarea.toMap()).then(
+                    (value) {
+                      if (value >0) {
+                        Navigator.pop(context);
+                         SnackBar(content: Text('Tarea editada con exito'));
+                          setState(() {});
+                      }else{
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('La solicitud no se completo'))
+                          );
+                        }
+                    });
+                }
              },
-             icon:Icon(Icons.send_outlined)),
+             icon:Icon(Icons.send_outlined)
+          ),
         ],
       ),
       body:  SingleChildScrollView (
@@ -57,47 +96,6 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
             _crearTextFieldFechaEntrega(),
             SizedBox(height: 10,),
             _crearTextFieldEntregada(),
-            ElevatedButton(
-              onPressed: (){
-                if(widget.tarea==null){
-                  TareasModel tarea = TareasModel(
-                    nomTarea: _controllerNombre.text,
-                    descTarea: _controllerDescripcion.text,
-                    fechaEntrega: _controllerFechaEntrega.text,
-                    entregada: _controllerEntregada.text,
-                  );
-                  _databaseHelper.insertHW(tarea.toMap()).then(
-                    (value){
-                      if (value>0) {
-                       Navigator.pop(context);
-                      }else{
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('La solicitud no se completo')));
-                      }
-                    }
-                    );
-                  }else{
-                    TareasModel tarea = TareasModel(
-                       id: widget.tarea!.id,
-                       nomTarea: _controllerNombre.text,
-                       descTarea: _controllerDescripcion.text,
-                       fechaEntrega: _controllerFechaEntrega.text,
-                       entregada: _controllerEntregada.text,
-                    );
-                    _databaseHelper.updateHW(tarea.toMap()).then(
-                      (value) {
-                        if (value >0) {
-                          Navigator.pop(context);
-                        }else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('La solicitud no se completo'))
-                            );
-                          }
-                      });
-                  }
-              }, 
-              child: Text('Guardar Tarea')
-            )
           ],
         ),
       ),
@@ -120,7 +118,7 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
 
   Widget _crearTextFieldDescripcion(){
     return TextFormField(
-      controller: _controllerNombre,
+      controller: _controllerDescripcion,
       maxLines: 8,
       textCapitalization: TextCapitalization.words,
       decoration: const InputDecoration(
@@ -135,7 +133,7 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
 
    Widget _crearTextFieldFechaEntrega(){
     return TextFormField(
-      controller: _controllerNombre,
+      controller: _controllerFechaEntrega,
       textCapitalization: TextCapitalization.words,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
@@ -149,7 +147,7 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
 
      Widget _crearTextFieldEntregada(){
     return TextFormField(
-      controller: _controllerNombre,
+      controller: _controllerEntregada,
       textCapitalization: TextCapitalization.words,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),

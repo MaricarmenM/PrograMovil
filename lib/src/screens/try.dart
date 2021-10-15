@@ -1,76 +1,54 @@
 import 'package:flutter/material.dart';
 
-class BottomSheetExample extends StatefulWidget {
-  const BottomSheetExample({Key? key}) : super(key: key);
+class BottomTabbarExample extends StatefulWidget {
+  const BottomTabbarExample({Key? key}) : super(key: key);
 
   @override
-  _BottomSheetExampleState createState() => _BottomSheetExampleState();
+  State<StatefulWidget> createState() => _BottomTabbarExampleState();
 }
 
-class _BottomSheetExampleState extends State<BottomSheetExample> {
-  // GlobalKey is needed to show bottom sheet.
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+class _BottomTabbarExampleState extends State<BottomTabbarExample>
+  with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  static const _kTabPages = <Widget>[
+    Center(child: Icon(Icons.alarm, size: 64.0, color: Colors.cyan)),
+    Center(child: Icon(Icons.forum, size: 64.0, color: Colors.blue)),
+  ];
+  static const _kTabs = <Tab>[
+    Tab(icon: Icon(Icons.cloud), text: 'Tab1'),
+    Tab(icon: Icon(Icons.alarm), text: 'Tab2'),
+    Tab(icon: Icon(Icons.forum), text: 'Tab3'),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: _kTabPages.length,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: this._scaffoldKey,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () => this
-                  ._scaffoldKey
-                  .currentState
-                  ?.showBottomSheet((ctx) => _buildBottomSheet(ctx)),
-              child: const Text('show bottom sheet'),
-            ),
-            ElevatedButton(
-              onPressed: () => showModalBottomSheet(
-                  context: context, builder: (ctx) => _buildBottomSheet(ctx)),
-              child: const Text('show modal bottom sheet'),
-            ),
-          ],
+      body: TabBarView(
+        controller: _tabController,
+        children: _kTabPages,
+      ),
+      bottomNavigationBar: Material(
+        color: Colors.blue,
+        child: TabBar(
+          tabs: _kTabs,
+          controller: _tabController,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-        },   
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-
-  Container _buildBottomSheet(BuildContext context) {
-    return Container(
-      height: 300,
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.blue, width: 2.0),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: ListView(
-        children: <Widget>[
-          const ListTile(title: Text('Bottom sheet')),
-          const TextField(
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              icon: Icon(Icons.attach_money),
-              labelText: 'Enter an integer',
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: ElevatedButton.icon(
-              icon: const Icon(Icons.save),
-              label: const Text('Save and close'),
-              onPressed: () => Navigator.pop(context),
-            ),
-          )
-        ],
       ),
     );
   }

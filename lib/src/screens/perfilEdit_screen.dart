@@ -153,11 +153,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
     );
   }
-
 //WIDGETS PARA EL FORMULARIO 
    Widget _crearTextFieldFoto(){
-    return 
-      ElevatedButton(
+    return ElevatedButton(
     style: ElevatedButton.styleFrom(primary: ColorSettings.colorPrimary),
     onPressed:(){
       showDialog(
