@@ -61,12 +61,11 @@ class _TareasEntregadasScreenState extends State<TareasEntregadasScreen> {
                 Text(tarea.nomTarea!,),
                 Text(tarea.descTarea!),
                 Text(tarea.fechaEntrega!),
-               // Text(tarea.entregada!),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(primary: ColorSettings.colorSec),
+                      style: ElevatedButton.styleFrom(minimumSize: const Size(400, 20),primary: ColorSettings.colorSec),
                         onPressed: (){
                           tarea.entregada = 0;
                           showDialog(
@@ -86,7 +85,7 @@ class _TareasEntregadasScreenState extends State<TareasEntregadasScreen> {
                                           if (noRows > 0) {
                                             ScaffoldMessenger.of(context).showSnackBar(
                                               SnackBar(
-                                                    content: Text('Tarea anulada!!'))
+                                                    content: Text('Entrega anulada!!'))
                                               );
                                             setState(() {});
                                           }
