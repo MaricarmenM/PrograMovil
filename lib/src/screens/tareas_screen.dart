@@ -76,18 +76,20 @@ class _TareasScreenState extends State<TareasScreen> {
         itemBuilder: (BuildContext context, index){
           TareasModel tarea = tareas[index];
           return Card(
+            color: DateTime.now().isAfter(DateTime.parse(tarea.fechaEntrega!))? Colors.red[400]:Colors.white,
             child: Column(
               children: [
-                Text(tarea.nomTarea!,),
-                Text(tarea.descTarea!),
-                Text(tarea.fechaEntrega!),
+                Text(tarea.nomTarea!, style: TextStyle(color: (DateTime.now().isAfter(DateTime.parse(tarea.fechaEntrega!)))? Colors.white:Colors.black),),
+                Text(tarea.descTarea!, style: TextStyle(color: (DateTime.now().isAfter(DateTime.parse(tarea.fechaEntrega!)))? Colors.white:Colors.black),),
+                Text(tarea.fechaEntrega!, style: TextStyle(color: (DateTime.now().isAfter(DateTime.parse(tarea.fechaEntrega!)))? Colors.white:Colors.black),),
+                Text(tarea.entregada!, style: TextStyle(color: (DateTime.now().isAfter(DateTime.parse(tarea.fechaEntrega!)))? Colors.white:Colors.black),),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                    ElevatedButton(
                         style: ElevatedButton.styleFrom(minimumSize: const Size(350, 20),primary: ColorSettings.colorPrimary),
                         onPressed: (){
-                          tarea.entregada = 1;
+                          tarea.entregada = "Entregada";
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -123,11 +125,11 @@ class _TareasScreenState extends State<TareasScreen> {
                           setState(() {});
                         });
                       },
-                      child: Text('Entregar')
+                      child: 
+                      Text('Entregar')
                     ),
                     IconButton(
                     icon: Icon(Icons.more_vert),
-                    
                     onPressed: () {
                       showDialog(
                         context: context, 

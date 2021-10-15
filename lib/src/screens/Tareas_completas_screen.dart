@@ -60,14 +60,15 @@ class _TareasEntregadasScreenState extends State<TareasEntregadasScreen> {
               children: [
                 Text(tarea.nomTarea!,),
                 Text(tarea.descTarea!),
-                Text(tarea.fechaEntrega!),
+                Text(tarea.fechaEntrega!,),
+                Text(tarea.entregada!,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                    ElevatedButton(
                       style: ElevatedButton.styleFrom(minimumSize: const Size(400, 20),primary: ColorSettings.colorSec),
                         onPressed: (){
-                          tarea.entregada = 0;
+                          tarea.entregada = "Sin Entregar";
                           showDialog(
                             context: context,
                             builder: (context) {

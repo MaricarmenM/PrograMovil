@@ -9,7 +9,7 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
   static final _nombreBD = "NOTASBD";
-  static final _versionBD = 118;
+  static final _versionBD = 25;
   static final _nombreTBL = "tblNotas";
   static final _nombreTBL2="tblUser";
   static final _nombreTBL3="tblTareas";
@@ -37,14 +37,14 @@ class DatabaseHelper {
     //  db.execute("DROP TABLE $_nombreTBL2");
     //  db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
       db.execute("DROP TABLE $_nombreTBL3");
-     await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega VARCHAR(10),entregada boolean)");
+     await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");
       
     }
 
    Future<void>  _crearTabla(Database db, int version) async{
       await db.execute("CREATE TABLE $_nombreTBL(id INTEGER PRIMARY KEY, titulo VARCHAR(50), detalle VARCHAR(100))");
       await db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
-      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega VARCHAR(10),entregada boolean)");         
+      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");         
     }
 
    //CRUD TAREAS
@@ -71,13 +71,13 @@ class DatabaseHelper {
   }
   Future<List<TareasModel>> getAllHWSinEntregar()async{
     var conexion = await database;
-    var result= await conexion!.query(_nombreTBL3,where:'entregada=?',whereArgs: [0]);
+    var result= await conexion!.query(_nombreTBL3,where:'entregada=?',whereArgs: ["Sin Entregar"]);
     return result.map((notaMap) => TareasModel.fromMap(notaMap)).toList();
   }
 
   Future<List<TareasModel>> getAllHWEntregadas()async{
     var conexion = await database;
-    var result= await conexion!.query(_nombreTBL3,where:'entregada=?',whereArgs: [1]);
+    var result= await conexion!.query(_nombreTBL3,where:'entregada=?',whereArgs: ["Entregada"]);
     return result.map((notaMap) => TareasModel.fromMap(notaMap)).toList();
   }
 

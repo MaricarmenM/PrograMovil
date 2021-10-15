@@ -3,7 +3,7 @@ class TareasModel {
   String? nomTarea;
   String? descTarea;
   String? fechaEntrega;
-  int? entregada;
+  String? entregada;
 
   TareasModel({this.id,this.nomTarea,this.descTarea,this.fechaEntrega,this.entregada});
 
