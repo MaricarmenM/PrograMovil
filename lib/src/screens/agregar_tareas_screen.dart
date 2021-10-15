@@ -27,7 +27,6 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
       _controllerNombre.text = widget.tarea!.nomTarea!;
       _controllerDescripcion.text = widget.tarea!.descTarea!;
       _controllerFechaEntrega.text= widget.tarea!.fechaEntrega!;
-     // _controllerEntregada.text=widget.tarea!.entregada!;
     }
     _databaseHelper = DatabaseHelper();
   }
@@ -45,7 +44,7 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
                   nomTarea: _controllerNombre.text,
                   descTarea: _controllerDescripcion.text,
                   fechaEntrega: _controllerFechaEntrega.text,
-                 // entregada: _controllerEntregada.text,
+                   entregada: 0,
                 );
                 _databaseHelper.insertHW(tarea.toMap()).then(
                   (value){
@@ -92,6 +91,10 @@ class _AgregarTareaScreenState extends State<AgregarTareaScreen> {
             _crearTextFieldDescripcion(),
             SizedBox(height: 10,),
             _crearTextFieldFechaEntrega(),
+            SizedBox(height: 10,),
+            Container(
+              
+            )
           ],
         ),
       ),

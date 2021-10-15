@@ -81,12 +81,11 @@ class _TareasScreenState extends State<TareasScreen> {
                 Text(tarea.nomTarea!,),
                 Text(tarea.descTarea!),
                 Text(tarea.fechaEntrega!),
-               // Text(tarea.entregada!),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: ColorSettings.colorPrimary),
+                        style: ElevatedButton.styleFrom(minimumSize: const Size(350, 20),primary: ColorSettings.colorPrimary),
                         onPressed: (){
                           tarea.entregada = 1;
                           showDialog(
@@ -127,8 +126,8 @@ class _TareasScreenState extends State<TareasScreen> {
                       child: Text('Entregar')
                     ),
                     IconButton(
-                    alignment: Alignment.topRight,
                     icon: Icon(Icons.more_vert),
+                    
                     onPressed: () {
                       showDialog(
                         context: context, 
