@@ -77,6 +77,12 @@ class _TareasEntregadasScreenState extends State<TareasEntregadasScreen> {
                                 content: Text(
                                     'Desea anular la entrega?'),
                                 actions: [
+                                   TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: 
+                                      Text('Cancelar')),
                                   TextButton(
                                     onPressed: () {
                                         Navigator.pop(context);
@@ -93,12 +99,6 @@ class _TareasEntregadasScreenState extends State<TareasEntregadasScreen> {
                                         });
                                       },
                                       child: Text('OK')),
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: 
-                                      Text('Cancelar')),
                                 ],
                               );
                             }).then((value) {

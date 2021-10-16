@@ -63,12 +63,6 @@ class DatabaseHelper {
     return await conexion!.delete(_nombreTBL3,where: 'id= ?',whereArgs:[id]);
   } 
 
-  
-  Future<List<TareasModel>> getAllHW()async{
-    var conexion = await database;
-    var result= await conexion!.query(_nombreTBL3,);
-    return result.map((notaMap) => TareasModel.fromMap(notaMap)).toList();
-  }
   Future<List<TareasModel>> getAllHWSinEntregar()async{
     var conexion = await database;
     var result= await conexion!.query(_nombreTBL3,where:'entregada=?',whereArgs: ["Sin Entregar"]);
