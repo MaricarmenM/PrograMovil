@@ -98,6 +98,11 @@ class _TareasScreenState extends State<TareasScreen> {
                                 content: Text(
                                     'La tarea se marcara como entregada?'),
                                 actions: [
+                                   TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('Cancelar')),
                                   TextButton(
                                     onPressed: () {
                                         Navigator.pop(context);
@@ -114,11 +119,6 @@ class _TareasScreenState extends State<TareasScreen> {
                                         });
                                       },
                                       child: Text('OK')),
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text('Cancelar')),
                                 ],
                               );
                             }).then((value) {
@@ -173,6 +173,12 @@ class _TareasScreenState extends State<TareasScreen> {
                                               content: Text('Estas seguro de eliminar la tarea?'),
                                               actions: [
                                                 TextButton(
+                                                onPressed: (){
+                                                  Navigator.pop(context);
+                                                }, 
+                                                child: Text('no')
+                                                ),
+                                                TextButton(
                                                   onPressed: (){
                                                     Navigator.pop(context);
                                                     _databaseHelper.deleteHW(tarea.id!).then(
@@ -187,12 +193,6 @@ class _TareasScreenState extends State<TareasScreen> {
                                                   },
                                                   child: Text('si')
                                                 ),
-                                                TextButton(
-                                                  onPressed: (){
-                                                    Navigator.pop(context);
-                                                  }, 
-                                                  child: Text('no')
-                                                  )
                                               ],
                                             );
                                           }
