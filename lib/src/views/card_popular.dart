@@ -25,11 +25,12 @@ class CardPopularView extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
       child: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
           Container(
             child: FadeInImage(
                   placeholder: AssetImage('assets/activity_indicator.gif'),
-                  image: NetworkImage('https://image.tmdb.org/t/p/w500${popular.backdropPath}'),
+                  image: NetworkImage('https://image.tmdb.org/t/p/w500/${popular.backdropPath}'),
                   fadeInDuration: Duration(milliseconds: 200),
                 ),
               ),
@@ -51,7 +52,7 @@ class CardPopularView extends StatelessWidget {
                           arguments: {
                             'title' : popular.title,
                             'overview':popular.overview,
-                            'posterpath': popular.posterPath
+                            'posterpath': popular.posterPath,
                           }
                       );
                     },

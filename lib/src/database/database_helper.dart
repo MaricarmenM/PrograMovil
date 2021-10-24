@@ -9,7 +9,7 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
   static final _nombreBD = "NOTASBD";
-  static final _versionBD = 25;
+  static final _versionBD = 26;
   static final _nombreTBL = "tblNotas";
   static final _nombreTBL2="tblUser";
   static final _nombreTBL3="tblTareas";
@@ -34,8 +34,8 @@ class DatabaseHelper {
     );
   }
     Future <void> _onUpGrade(Database db,int oldVersion,int newVersion) async{
-    //  db.execute("DROP TABLE $_nombreTBL2");
-    //  db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
+      db.execute("DROP TABLE $_nombreTBL2");
+      db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
       db.execute("DROP TABLE $_nombreTBL3");
      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");
       

@@ -106,45 +106,55 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             SizedBox(height: 10,),
             ElevatedButton(
               onPressed: (){
-                if(widget.dato==null){
-                  PerfilModel dato = PerfilModel(
-                    nombre: _controllerNombre.text,
-                    apellido1: _controllerApellido1.text,
-                    apellido2: _controllerApellido2.text,
-                    telefono: _controllerTelefono.text,
-                    correo: _controllerCorreo.text
-                  );
-                  _databaseHelper.insertUser(dato.toMap()).then(
-                    (value){
-                      if (value>0) {
-                       Navigator.pop(context);
-                      }else{
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('La solicitud no se completo')));
-                      }
-                    }
-                  );
-                }else{
-                   PerfilModel dato = PerfilModel(
-                      id: widget.dato!.id,
-                      nombre: _controllerNombre.text,
-                      apellido1: _controllerApellido1.text,
-                      apellido2: _controllerApellido2.text,
-                      telefono: _controllerTelefono.text,
-                      correo: _controllerCorreo.text,
-                      foto: imagen
-                    );
-                    _databaseHelper.updateUser(dato.toMap()).then(
-                      (value) {
-                        if (value >0) {
-                          Navigator.pop(context);
-                        }else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('La solicitud no se completo'))
-                            );
+              if (_controllerNombre.text != "" && _controllerNombre.text != " ") {
+              if (_controllerApellido1.text != "" && _controllerApellido1.text != " ") {
+              if (_controllerApellido2.text != "" && _controllerApellido2.text != " ") {
+              if (_controllerTelefono.text != "" && _controllerTelefono.text != " ") {
+                if (_controllerCorreo.text != "" && _controllerCorreo.text != " ") {
+                      if(widget.dato==null){
+                        PerfilModel dato = PerfilModel(
+                          nombre: _controllerNombre.text,
+                          apellido1: _controllerApellido1.text,
+                          apellido2: _controllerApellido2.text,
+                          telefono: _controllerTelefono.text,
+                          correo: _controllerCorreo.text
+                        );
+                        _databaseHelper.insertUser(dato.toMap()).then(
+                          (value){
+                            if (value>0) {
+                            Navigator.pop(context);
+                            }else{
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('La solicitud no se completo')));
+                            }
                           }
-                      });
+                        );
+                      }else{
+                        PerfilModel dato = PerfilModel(
+                            id: widget.dato!.id,
+                            nombre: _controllerNombre.text,
+                            apellido1: _controllerApellido1.text,
+                            apellido2: _controllerApellido2.text,
+                            telefono: _controllerTelefono.text,
+                            correo: _controllerCorreo.text,
+                            foto: imagen
+                          );
+                          _databaseHelper.updateUser(dato.toMap()).then(
+                            (value) {
+                              if (value >0) {
+                                Navigator.pop(context);
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('La solicitud no se completo'))
+                                  );
+                                }
+                            });
+                        }
+                     }
+                    }
                   }
+                 }
+                }
                },
               child: Text('Guardar Datos'),
             )

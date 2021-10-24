@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         '/tareas'       :(BuildContext context)=> TareasScreen(),
        '/crudTareas'    :(BuildContext context)=> AgregarTareaScreen(),
        '/tareasCompletas'   :(BuildContext context)=> TareasEntregadasScreen(),
-       '/detail' :(BuildContext context)=> DetailScreen(),
+       '/detail'            :(BuildContext context)=> DetailScreen(),
       // '/crudTareas'   :(BuildContext context)=> BottomTabbarExample(),
       },
       debugShowCheckedModeBanner: false,
