@@ -13,6 +13,7 @@ class DatabaseHelper {
   static final _nombreTBL = "tblNotas";
   static final _nombreTBL2="tblUser";
   static final _nombreTBL3="tblTareas";
+  static final _nombreTBL4="tblMovies";
 
   static Database? _database;
   Future<Database?> get database async{
@@ -38,13 +39,16 @@ class DatabaseHelper {
       db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
       db.execute("DROP TABLE $_nombreTBL3");
      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");
+        db.execute("DROP TABLE $_nombreTBL4");
+    await db.execute("CREATE TABLE $_nombreTBL4(id INTEGER PRIMARY KEY, nomPeli VARCHAR(50), imagen text(50), estatus VARCHAR(20))"); 
       
     }
 
    Future<void>  _crearTabla(Database db, int version) async{
       await db.execute("CREATE TABLE $_nombreTBL(id INTEGER PRIMARY KEY, titulo VARCHAR(50), detalle VARCHAR(100))");
       await db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
-      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");         
+      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");    
+      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomPeli VARCHAR(50), imagen text(50), estatus VARCHAR(20))");      
     }
 
    //CRUD TAREAS

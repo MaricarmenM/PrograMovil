@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/notas_model.dart';
-import 'package:practica2/src/screens/AgregarNotaScreen.dart';
+import 'package:practica2/src/screens/Notas/AgregarNotaScreen.dart';
 import 'package:practica2/src/utils/color_settings.dart';
 
 class NotasScreen extends StatefulWidget {

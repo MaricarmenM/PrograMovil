@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/screens/AgregarNotaScreen.dart';
-import 'package:practica2/src/screens/Tareas_completas_screen.dart';
-import 'package:practica2/src/screens/agregar_tareas_screen.dart';
+import 'package:practica2/src/screens/Notas/AgregarNotaScreen.dart';
+import 'package:practica2/src/screens/Tareas/Tareas_completas_screen.dart';
+import 'package:practica2/src/screens/Tareas/agregar_tareas_screen.dart';
 import 'package:practica2/src/screens/intensiones_screen.dart';
 import 'package:practica2/src/screens/login_screen/opcion1_screen.dart';
 import 'package:practica2/src/screens/movies_screens/detail_screen.dart';
 import 'package:practica2/src/screens/movies_screens/popular_screen.dart';
-import 'package:practica2/src/screens/notas_screen.dart';
-import 'package:practica2/src/screens/perfilEdit_screen.dart';
-import 'package:practica2/src/screens/profile_screen.dart';
+import 'package:practica2/src/screens/Notas/notas_screen.dart';
+import 'package:practica2/src/screens/Perfil/perfilEdit_screen.dart';
+import 'package:practica2/src/screens/Perfil/profile_screen.dart';
 import 'package:practica2/src/screens/splash_screen.dart';
-import 'package:practica2/src/screens/tareas_screen.dart';
+import 'package:practica2/src/screens/Tareas/tareas_screen.dart';
+import 'package:practica2/src/views/fav_movies.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
        '/crudTareas'    :(BuildContext context)=> AgregarTareaScreen(),
        '/tareasCompletas'   :(BuildContext context)=> TareasEntregadasScreen(),
        '/detail'            :(BuildContext context)=> DetailScreen(),
-      // '/crudTareas'   :(BuildContext context)=> BottomTabbarExample(),
+       '/favMovies'   :(BuildContext context)=> FavMoviesScreen(),
       },
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),

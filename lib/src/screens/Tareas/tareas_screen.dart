@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/tareas_model.dart';
-import 'package:practica2/src/screens/agregar_tareas_screen.dart';
+import 'package:practica2/src/screens/Tareas/agregar_tareas_screen.dart';
 import 'package:practica2/src/utils/color_settings.dart';
 
 class TareasScreen extends StatefulWidget {

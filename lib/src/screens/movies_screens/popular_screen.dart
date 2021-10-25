@@ -1,6 +1,3 @@
-// ignore: unused_import
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practica2/src/models/popular_movies_model.dart';

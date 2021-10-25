@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/database/database_helper.dart';
 import 'package:practica2/src/models/perfil_model.dart';
-import 'package:practica2/src/screens/perfilEdit_screen.dart';
+import 'package:practica2/src/screens/Perfil/perfilEdit_screen.dart';
 import 'package:practica2/src/utils/color_settings.dart';
 
 class UserProfileScreen extends StatefulWidget {
