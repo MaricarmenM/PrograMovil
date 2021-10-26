@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:practica2/src/models/favMovie_model.dart';
 import 'package:practica2/src/models/notas_model.dart';
 import 'package:practica2/src/models/perfil_model.dart';
 import 'package:practica2/src/models/tareas_model.dart';
@@ -9,7 +10,7 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
   static final _nombreBD = "NOTASBD";
-  static final _versionBD = 26;
+  static final _versionBD = 38;
   static final _nombreTBL = "tblNotas";
   static final _nombreTBL2="tblUser";
   static final _nombreTBL3="tblTareas";
@@ -35,12 +36,12 @@ class DatabaseHelper {
     );
   }
     Future <void> _onUpGrade(Database db,int oldVersion,int newVersion) async{
-      db.execute("DROP TABLE $_nombreTBL2");
-      db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
-      db.execute("DROP TABLE $_nombreTBL3");
-     await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");
-        db.execute("DROP TABLE $_nombreTBL4");
-    await db.execute("CREATE TABLE $_nombreTBL4(id INTEGER PRIMARY KEY, nomPeli VARCHAR(50), imagen text(50), estatus VARCHAR(20))"); 
+  //    db.execute("DROP TABLE $_nombreTBL2");
+    //  db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
+   //  db.execute("DROP TABLE $_nombreTBL3");
+     //await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");
+    await db.execute("DROP TABLE $_nombreTBL4");
+    await db.execute("CREATE TABLE $_nombreTBL4(id INTEGER PRIMARY KEY, title VARCHAR(50), backdrop_path text(255))");      
       
     }
 
@@ -48,8 +49,37 @@ class DatabaseHelper {
       await db.execute("CREATE TABLE $_nombreTBL(id INTEGER PRIMARY KEY, titulo VARCHAR(50), detalle VARCHAR(100))");
       await db.execute("CREATE TABLE $_nombreTBL2(id INTEGER PRIMARY KEY,foto text(50), nombre VARCHAR(50), apellido1 VARCHAR(50), apellido2 VARCHAR(50),telefono VARCHAR(10),correo VARCHAR(50))");
       await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomTarea VARCHAR(50), descTarea VARCHAR(100), fechaEntrega datetime,entregada VARCHAR(20))");    
-      await db.execute("CREATE TABLE $_nombreTBL3(id INTEGER PRIMARY KEY, nomPeli VARCHAR(50), imagen text(50), estatus VARCHAR(20))");      
+      await db.execute("CREATE TABLE $_nombreTBL4(id INTEGER PRIMARY KEY, title VARCHAR(50), backdropPath text(255))");      
     }
+
+  //CRUD FAVORITAS
+    Future<int> insertFav(Map<String, dynamic> row) async {
+    var conexion = await database;
+    return conexion!.insert(_nombreTBL4, row);
+  }
+
+  Future<int> noFav(int id) async {
+    var conexion = await database;
+    return await conexion!.delete(_nombreTBL4, where: 'id = ?', whereArgs: ['id']);
+
+  }
+
+  Future<List<FavMovieModel>> getAllFavs() async {
+    var conexion = await database;
+    var result = await conexion!.query(_nombreTBL4);
+    return result.map((notaMap) => FavMovieModel.fromMap(notaMap)).toList();
+  }
+
+  Future<FavMovieModel?> getFav(int id) async {
+    var conexion = await database;
+    var result = await conexion!.query(_nombreTBL4, where: 'id= ? ', whereArgs: ['id']);
+    
+    if(result.isEmpty){
+      return null;
+    }else{
+      return FavMovieModel.fromMap(result.first);
+    }
+  }
 
    //CRUD TAREAS
   Future<int>insertHW(Map<String,dynamic> row ) async {

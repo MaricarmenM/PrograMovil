@@ -110,14 +110,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               if (_controllerApellido1.text != "" && _controllerApellido1.text != " ") {
               if (_controllerApellido2.text != "" && _controllerApellido2.text != " ") {
               if (_controllerTelefono.text != "" && _controllerTelefono.text != " ") {
-                if (_controllerCorreo.text != "" && _controllerCorreo.text != " ") {
+              if (_controllerCorreo.text != "" && _controllerCorreo.text != " ") {
+              if(imagen!=null){
                       if(widget.dato==null){
                         PerfilModel dato = PerfilModel(
                           nombre: _controllerNombre.text,
                           apellido1: _controllerApellido1.text,
                           apellido2: _controllerApellido2.text,
                           telefono: _controllerTelefono.text,
-                          correo: _controllerCorreo.text
+                          correo: _controllerCorreo.text,
+                          foto: imagen//puse esta
                         );
                         _databaseHelper.insertUser(dato.toMap()).then(
                           (value){
@@ -150,6 +152,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 }
                             });
                         }
+                      }else{
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Debe cargar una foto'))
+                          );
+                      }
                      }
                     }
                   }

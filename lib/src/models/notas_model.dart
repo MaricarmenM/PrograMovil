@@ -15,7 +15,7 @@ class NotasModel {
       
     );
   }
-  //object->maa
+  //object->map
   Map<String,dynamic>toMap(){
     return{
       'id':id,

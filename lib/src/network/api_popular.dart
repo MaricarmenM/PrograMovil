@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:practica2/src/models/act_model.dart';
 import 'package:practica2/src/models/popular_movies_model.dart';
-import 'package:practica2/src/models/trailer_model.dart';
 
 class ApiPopular {
 
@@ -25,26 +24,13 @@ class ApiPopular {
     }
   }
 
-  Future<Popular_trailers_model?> getTrailer({required int idMovie}) async{
-    var URLVideos = Uri.parse('https://api.themoviedb.org/3/movie/$idMovie/videos?api_key=7aaa34632a1da07d176705660bccabeb&language=en-US');
-    final response = await http.get(URLVideos);
-    if (response.statusCode==200) {
-      var respuesta = jsonDecode(response.body);
-      Popular_trailers_model trailer = Popular_trailers_model.fromJson(respuesta);
-     return trailer;
-    }
-  }
-
   Future<PopularMoviesModel> getMovieDetail(int movieId) async {
     try {
       final response = await _dio.get(
           'https://api.themoviedb.org/3/movie/$movieId?api_key=5a8ed5c7a19857d34088f938b9fc444d&page=1');
-      PopularMoviesModel movieDetail =
-          PopularMoviesModel.fromJson(response.data);
-
+      PopularMoviesModel movieDetail = PopularMoviesModel.fromJson(response.data);
       movieDetail.castList = await getCastList(movieId);
       movieDetail.trailerId = await getYoutubeId(movieId);
-
       return movieDetail;
     } catch (error, stacktrace) {
       throw Exception(
@@ -63,7 +49,6 @@ class ApiPopular {
               profilePath: c['profile_path'],
               character: c['character']))
           .toList();
-
       return castList;
     } catch (error, stacktrace) {
       throw Exception(

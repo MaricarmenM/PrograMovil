@@ -23,6 +23,20 @@ class _PopularScreenState extends State<PopularScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor:  Colors.black87,
+         title: Text('Popular Movies'),
+         actions: [
+           IconButton(
+             onPressed: (){
+               Navigator.pushNamed(context,'/favMovies').whenComplete((){
+                 setState(() {});
+               });
+             }, 
+             icon: Icon(Icons.movie_filter_outlined)
+             )
+         ],
+      ),
       body: FutureBuilder(
         future: apiPopular!.getAllPopular(),
         builder: (BuildContext context,AsyncSnapshot<List<
