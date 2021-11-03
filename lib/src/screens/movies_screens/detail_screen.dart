@@ -158,7 +158,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          Text(movie.title!,textAlign: TextAlign.justify, style: Theme.of(context).textTheme.title, ),
+                                          Text(movie.title!,textAlign: TextAlign.justify, style: Theme.of(context).textTheme.subtitle2, ),
                                           SizedBox(height: 10.0,),
                                         ],
                                       ),
@@ -171,7 +171,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                               child: Column(
                                 children: [
-                                  Text('OVERVIEW',textAlign: TextAlign.start, style: Theme.of(context).textTheme.title,),
+                                  Text('OVERVIEW',textAlign: TextAlign.start, style: Theme.of(context).textTheme.subtitle2,),
                                   Text(movie.overview!,textAlign: TextAlign.justify,style: Theme.of(context).textTheme.subtitle1,)
                                 ],
                               )
@@ -180,7 +180,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                               child: Column(
                                 children: [
-                                  Text('TRAILER',textAlign: TextAlign.start, style: Theme.of(context).textTheme.title,),
+                                  Text('TRAILER',textAlign: TextAlign.start, style: Theme.of(context).textTheme.subtitle2,),
                                   YoutubePlayer(
                                     controller: _controllerVideo,
                                     showVideoProgressIndicator: true,
@@ -193,7 +193,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                               child: Column(
                                 children: [
-                                  Text('CAST',textAlign: TextAlign.start, style: Theme.of(context).textTheme.title,),
+                                  Text('CAST',textAlign: TextAlign.start, style: Theme.of(context).textTheme.subtitle2,),
                                   Container(
                                       height: 110,
                                       child: ListView.separated(
