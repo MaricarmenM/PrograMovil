@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/src/screens/News/detail_screen.dart';
+import 'package:practica2/src/screens/News/news_screen.dart';
 import 'package:practica2/src/screens/Notas/AgregarNotaScreen.dart';
 import 'package:practica2/src/screens/Tareas/Tareas_completas_screen.dart';
 import 'package:practica2/src/screens/Tareas/agregar_tareas_screen.dart';
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
        '/tareasCompletas'   :(BuildContext context)=> TareasEntregadasScreen(),
        '/detail'            :(BuildContext context)=> DetailScreen(),
        '/favMovies'   :(BuildContext context)=> FavMoviesScreen(),
+       '/noticias'        :(BuildContext context) => NewsScreen(),
+      '/detailNews'        :(BuildContext context) => NewsDetailScreen(),
       },
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),

@@ -83,6 +83,16 @@ class DashBoardScreen extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.pushNamed(context,'/tareas');
                   },
+                ),
+                ListTile(
+                  title: Text('Noticias'),
+                  subtitle: Text('API de Noticias'),
+                  leading: Icon(Icons.source),
+                  trailing: Icon(Icons.chevron_right),
+                  onTap: (){
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context,'/noticias');
+                  },
                 )
             ],
           ),

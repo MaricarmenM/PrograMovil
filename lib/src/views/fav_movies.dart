@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practica2/src/database/database_helper.dart';
-import 'package:practica2/src/models/favMovie_model.dart';
-import 'package:practica2/src/models/popular_movies_model.dart';
+import 'package:practica2/src/models/movies%20models/favMovie_model.dart';
+import 'package:practica2/src/models/movies%20models/popular_movies_model.dart';
 import 'package:practica2/src/network/api_popular.dart';
 import 'package:practica2/src/views/card_popular.dart';
 

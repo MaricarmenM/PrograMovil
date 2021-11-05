@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:practica2/src/models/favMovie_model.dart';
+import 'package:practica2/src/models/movies%20models/favMovie_model.dart';
 import 'package:practica2/src/models/notas_model.dart';
 import 'package:practica2/src/models/perfil_model.dart';
 import 'package:practica2/src/models/tareas_model.dart';

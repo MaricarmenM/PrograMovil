@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-import 'package:practica2/src/models/act_model.dart';
-import 'package:practica2/src/models/popular_movies_model.dart';
+import 'package:practica2/src/models/movies%20models/act_model.dart';
+import 'package:practica2/src/models/movies%20models/popular_movies_model.dart';
 
 class ApiPopular {
 
