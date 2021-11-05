@@ -69,7 +69,7 @@ class _CardNewsViewState extends State<CardNewsView> {
               ),
             ),
             SizedBox( height: 5.0 ),
-            Text('Author(s):  ${widget.news.author!}',
+            Text('Author(s):  ${widget.news.author !=null ? widget.news.author : 'UnKnow'}',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 13.0,

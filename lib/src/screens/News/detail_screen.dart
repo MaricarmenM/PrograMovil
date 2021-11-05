@@ -105,7 +105,7 @@ class NewsDetailScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            Text('By: ${noticia['author']}'.toUpperCase(),
+                            Text('By: ${noticia['author'] != null ? noticia['author'] : 'Unknown'}'.toUpperCase(),
                                 style: TextStyle(
                                   fontSize: 13.0,
                                   color: Colors.black54,
