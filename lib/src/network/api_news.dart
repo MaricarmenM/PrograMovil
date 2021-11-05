@@ -15,7 +15,7 @@ class ApiNews {
       List<DetailNewsModel> articles = body.map((dynamic item) => DetailNewsModel.fromJson(item)).toList();
       return articles;
     } else {
-      throw ("Can't get the Articles");
+      throw ("Can't get results");
     }
   }
 

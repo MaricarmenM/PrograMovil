@@ -25,19 +25,6 @@ class DetailNewsModel {
     this.content,
   });
 
-  /* factory DetailNewsModel.fromMap(Map<String,dynamic> map){
-    return DetailNewsModel(
-      source            : NewsSourceModel.fromMap(map['source']),
-      author            : map['author'], 
-      title             : map['title'],
-      description       : map['description'],
-      url               : map['url'],
-      urlToImage        : map['urlToImage']?? "",
-      publishedAt       : map['publishedAt'],
-      content           : map['content']      
-    );
-  }*/
-
    factory DetailNewsModel.fromJson(Map<String, dynamic> json) {
     return DetailNewsModel(
       source: NewsSourceModel.fromJson(json['source']),
